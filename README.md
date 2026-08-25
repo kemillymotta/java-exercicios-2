@@ -8,7 +8,7 @@ It was created to keep the next stages of my Java learning organized in a separa
 
 ## Structure
 
-Exercises and examples are separated into different packages to keep the project organized and avoid conflicts between classes with common names such as `Product`, `Client`, or `Program`.
+Exercises and examples are separated into different packages to keep the project organized and avoid conflicts between classes with common names such as `Product`, `Client`, or `Log`.
 
 Example:
 
