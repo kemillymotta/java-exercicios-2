@@ -2,7 +2,7 @@ package setNmap;
 
 import java.util.HashMap;
 
-public class hashMapEx {
+public class mapExI {
     public static void main(String[] args) {
 
         //map = collection of key value pairs
