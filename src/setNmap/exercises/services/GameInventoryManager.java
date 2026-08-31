@@ -32,33 +32,33 @@ public class GameInventoryManager {
 
     public void useItem(String item, int quantity) {
 
+        inventory.compute(item, (key, currentQuantity) -> {
 
-        if(!inventory.containsKey(item)) {
-            System.out.println("Item not found!");
-            return;
-        }
+            if (currentQuantity == null) {
+                System.out.println("Item not found!");
+                return null;
+            }
 
-        int currentQuantity = inventory.get(item);
+            if (quantity <= 0) {
+                System.out.println("It has to be more than 0.");
+                return currentQuantity;
+            }
 
-        if (quantity <= 0) {
-            System.out.println("It has to be more than 0.");
-            return;
-        }
+            if (currentQuantity < quantity) {
+                System.out.println("Not enough.");
+                return currentQuantity;
+            }
 
-        if (currentQuantity < quantity) {
-            System.out.println("Not enough.");
-            return;
-        }
+            int newQuantity = currentQuantity - quantity;
 
-        int newQuantity = currentQuantity - quantity;
+            if (newQuantity == 0) {
+                System.out.println("Item removed from inventory.");
+                return null;
+            }
 
-        if (newQuantity == 0) {
-            inventory.remove(item);
-            System.out.println("Item removed from inventory.");
-        } else {
-            inventory.put(item, newQuantity);
-            System.out.printf("%s's quantity updated!%n", item);
-        }
+            System.out.printf("%s's quantity updated!%n", key);
+            return newQuantity;
+        });
     }
 
     public void checkItem (String item) {
