@@ -15,22 +15,21 @@ public class ListeningStatsManager {
 
         artist = normalizeArtistName(artist);
 
-        if(scrobbles <= 0) {
+        if (scrobbles <= 0) {
             System.out.println("Enter a valid number of scrobbles.");
             return;
         }
 
-        if(!listeningStats.containsKey(artist)) {
-            listeningStats.put(artist, scrobbles);
+        listeningStats.compute(artist, (key, currentScrobbles) -> {
 
-            System.out.println("Artist added!");
-        } else {
-            int currentScrobbles = listeningStats.get(artist);
-            listeningStats.put(artist, (currentScrobbles + scrobbles));
+            if (currentScrobbles == null) {
+                System.out.println("Artist added!");
+                return scrobbles;
+            }
 
             System.out.println("Scrobbles updated!");
-        }
-
+            return currentScrobbles + scrobbles;
+        });
     }
 
     public void searchArtist (String artist){
