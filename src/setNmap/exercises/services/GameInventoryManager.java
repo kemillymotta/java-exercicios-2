@@ -47,7 +47,7 @@ public class GameInventoryManager {
             if (currentQuantity < quantity) {
                 System.out.println("Not enough.");
                 return currentQuantity;
-            }
+            };
 
             int newQuantity = currentQuantity - quantity;
 
